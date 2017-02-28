@@ -21,12 +21,11 @@ void autro::Processing(QVector<QString> Input)
 
 void autro::Input_S()
 {
-    S.clear();
+    QTextStream(stdout) << "\nInput_S\n";
     int n;
     QString STR;
     QTextStream(stdout) << "Input count states : ";
     QTextStream(stdin) >> n;
-    QVector<QString> S; /*Множество состояний*/
     for(int i = 0; i < n; i++)
     {
         QTextStream(stdout) << "Input state[" << i << "] : ";
@@ -37,12 +36,11 @@ void autro::Input_S()
 
 void autro::Input_X()
 {
-    X.clear();
+    QTextStream(stdout) << "\nInput_X\n";
     int n;
     QTextStream(stdout) << "Input count inputs : ";
     QTextStream(stdin) >> n;
     QString STR;
-    QVector<QString> X; /*Множество входов*/
     for(int i = 0; i < n; i++)
     {
         QTextStream(stdout) << "Input input[" << i << "] : ";
@@ -53,7 +51,7 @@ void autro::Input_X()
 
 void autro::Input_Y()
 {
-    Y.clear();
+    QTextStream(stdout) << "\nInput_Y\n";
     if(S.empty()) Input_S();
     if(X.empty()) Input_X();
     for(int i = 0 ; i < X.length() ; i++)
@@ -68,7 +66,7 @@ void autro::Input_Y()
 
 void autro::Input_ST()
 {
-    ST.clear();
+    QTextStream(stdout) << "\nInput_ST\n";
     if(S.empty()) Input_S();
     if(X.empty()) Input_X();
     for(int i = 0 ; i < X.length() ; i++)
