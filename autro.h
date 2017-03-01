@@ -12,12 +12,14 @@ class autro
     QVector<QString> S;
     QMap<QString, QMap<QString, QString> > Y;
     QMap<QString, QMap<QString, QString> > ST;
+    QString Code;
 public:
     void Input_S();
     void Input_X();
     void Input_ST();
     void Input_Y();
-    void Processing(QVector<QString> Str);
+    void Processing(QStringList Input);
+    void Code_Generation();
     autro();
 };
 

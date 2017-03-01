@@ -6,16 +6,10 @@ int main(int argc, char *argv[])
     QCoreApplication a(argc, argv);
     autro obj;
     int n, i = 0;
-    QVector<QString> Str;
+    QString Input;
     QTextStream(stdout) << "Input length : ";
-    QTextStream(stdin) >> n;
-    QString S;
-    while(i<n)
-    {
-        QTextStream(stdout) << "Input str[" << i++ <<"] : ";
-        QTextStream(stdin) >> S;
-        Str.push_back(S);
-    }
-    obj.Processing(Str);
+    QTextStream(stdin) >> Input;
+    obj.Processing(Input.split(","));
+    obj.Code_Generation();
     return a.exec();
 }

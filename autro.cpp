@@ -6,16 +6,12 @@ autro::autro()
     Input_ST();
 }
 
-void autro::Processing(QVector<QString> Input)
+void autro::Processing(QStringList Input)
 {
-    QString STR;
     QString sActual = S[0];
-    int n = Input.size();
-    for(int i = 0; i < Input.length(); i++)
-    {
-        STR = Input[i];
-        QTextStream(stdout) << Y[STR][sActual] ;
-        sActual = ST[STR][sActual];
+    foreach (QString Str, Input) {
+        QTextStream(stdout) << Y[Str][sActual] ;
+        sActual = ST[Str][sActual];
     }
 }
 
@@ -77,4 +73,28 @@ void autro::Input_ST()
             QTextStream(stdin) >> ST[X[i]][S[j]];
         }
     }
+}
+
+void autro::Code_Generation()
+{
+    QString Current_Str;
+    Current_Str = "switch(Input)\n{\n";
+    foreach (QString Inputs, X) {
+        Current_Str.append("case ");
+        Current_Str.append(Inputs);
+        Current_Str.append(" :\n{\n");
+        Current_Str.append("switch (Status)\n{\n");
+        foreach (QString State, S) {
+            Current_Str.append("case ");
+            Current_Str.append(State);
+            Current_Str.append(" :\n{\n");
+            Current_Str += "std::cout << Entrance.find(" + Inputs + "," + State + ") << std::endl;\n";
+            Current_Str += "Status = Transform.find(" + Inputs + "," + State + ");\n";
+            Current_Str.append("break;\n}\n");
+        }
+        Current_Str.append("}\nbreak;\n}\n");
+    }
+    Current_Str.append("}");
+    Code.append(Current_Str);
+    QTextStream(stdout) << "\n\n\n\n\n\n\n" << Code;
 }
